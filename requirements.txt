@@ -1,0 +1,4 @@
+# Both are optional: with LLM_PROVIDER=offline (the default) this project runs
+# on a clean Python 3.10+ with nothing installed.
+google-genai>=1.0.0      # only for LLM_PROVIDER=gemini
+python-dotenv>=1.0.0     # only to read .env; real env vars work without it

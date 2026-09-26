@@ -1,0 +1,34 @@
+[
+  {
+    "ts": "2026-09-26T17:54:35",
+    "cap": "R3",
+    "action": "send",
+    "message": "m001",
+    "why_gated": "reply to raghav@paperjet.io leaves the system and cannot be unsent",
+    "decided_by": "--yes",
+    "outcome": "done",
+    "file": "outbox/m001.txt",
+    "to": "raghav@paperjet.io"
+  },
+  {
+    "ts": "2026-09-26T17:54:35",
+    "cap": "R3",
+    "action": "send",
+    "message": "m019",
+    "why_gated": "reply to events@thegrandvenue.com leaves the system and cannot be unsent",
+    "decided_by": "--yes",
+    "outcome": "done",
+    "file": "outbox/m019.txt",
+    "to": "events@thegrandvenue.com"
+  },
+  {
+    "ts": "2026-09-26T17:54:35",
+    "cap": "R3",
+    "action": "delete",
+    "message": "m024",
+    "why_gated": "the message itself asks to be deleted after it is obeyed",
+    "decided_by": "policy",
+    "outcome": "refused",
+    "note": "this system never deletes mail; flagged and left in place"
+  }
+]

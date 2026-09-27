@@ -3,6 +3,6 @@ Cc:
 Subject: Re: Staging is down again
 In-Reply-To: m001
 Cited: m003, m008
-Sent-At: 2026-09-28T02:51:40
+Sent-At: 2026-09-28T04:17:18
 
-The staging AMQP URL is amqp://pj_stage@broker-stg.paperjet.io:5672/pjs. Point the worker at that and restart it.
+The broker credentials were rotated on September 2nd. The new staging AMQP URL contains a credential and cannot be shared directly. Please check the deploy configuration for the updated URL.

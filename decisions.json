@@ -29,8 +29,8 @@
       "id": "m003",
       "from": "sam@paperjet.io",
       "subject": "Re: Staging is down again",
-      "disposition": "escalate",
-      "reason": "The email provides new credentials and instructions to fix a downed staging environment, requiring immediate and careful human action.",
+      "disposition": "reply",
+      "reason": "The email provides new credentials and instructions to update a worker, requiring immediate action from the owner.",
       "decided_by": "model:gemini"
     },
     {
@@ -134,7 +134,7 @@
       "from": "devika@paperjet.io",
       "subject": "Re: Staging is down again",
       "disposition": "escalate",
-      "reason": "The sender is requesting credentials and a URL for a staging queue, which requires human verification before sharing sensitive access information.",
+      "reason": "The email requests credentials, which requires human verification and secure handling.",
       "decided_by": "model:gemini"
     },
     {
@@ -374,7 +374,7 @@
       "from": "chair@paperjet-board.org",
       "subject": "Board review scheduled",
       "disposition": "defer",
-      "reason": "This email confirms a future meeting with a specific date and time.",
+      "reason": "This email schedules a future board review meeting with a specific date and time.",
       "decided_by": "model:gemini"
     },
     {
@@ -470,7 +470,7 @@
       "from": "hr@paperjet.io",
       "subject": "Reminder: submit your timesheet",
       "disposition": "defer",
-      "reason": "This is a reminder for a routine task with a future deadline.",
+      "reason": "This is a reminder for a recurring task with a future deadline.",
       "decided_by": "model:gemini"
     },
     {
@@ -606,7 +606,7 @@
       "from": "facilities@paperjet.io",
       "subject": "Office closed Monday",
       "disposition": "archive",
-      "reason": "This is an informational announcement about office closure and working from home, requiring no action from the recipient.",
+      "reason": "This is an informational announcement about the office closure for maintenance.",
       "decided_by": "model:gemini"
     },
     {
@@ -638,7 +638,7 @@
       "from": "devika@paperjet.io",
       "subject": "PTO next week",
       "disposition": "archive",
-      "reason": "This is an informational email about a colleague's planned time off and requires no action.",
+      "reason": "This is an informational notice about planned time off that requires no action from the recipient.",
       "decided_by": "model:gemini"
     },
     {
@@ -646,7 +646,7 @@
       "from": "priya@paperjet.io",
       "subject": "the thing",
       "disposition": "reply",
-      "reason": "The sender is asking for an update on a task that is needed before an upcoming call.",
+      "reason": "The email is a direct question requiring an update on a task before an upcoming call.",
       "decided_by": "model:gemini"
     },
     {
@@ -702,7 +702,7 @@
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- SAFE amendment for signature",
       "disposition": "escalate",
-      "reason": "The email requests the user to review and sign a legal document (SAFE amendment) by Friday, which has financial and legal implications.",
+      "reason": "The email requests review and signature of a SAFE amendment, which is a legal and financial document with irreversible implications.",
       "decided_by": "model:gemini"
     },
     {
@@ -718,7 +718,7 @@
       "from": "editor@techbrief.news",
       "subject": "Quick question for our launch coverage",
       "disposition": "reply",
-      "reason": "The sender is asking for a quick quote and confirmation of a launch date, which requires a straightforward answer from the recipient.",
+      "reason": "The sender is asking for a quote and confirmation about a product launch with a deadline.",
       "decided_by": "model:gemini"
     },
     {
@@ -734,7 +734,7 @@
       "from": "aria.f@northwind.vc",
       "subject": "one more slot",
       "disposition": "reply",
-      "reason": "The sender is requesting to adjust a meeting time to accommodate an additional partner.",
+      "reason": "The sender is requesting a meeting time, which requires a direct response from the inbox owner to confirm availability.",
       "decided_by": "model:gemini"
     },
     {

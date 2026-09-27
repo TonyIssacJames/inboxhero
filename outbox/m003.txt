@@ -1,0 +1,10 @@
+To: sam@paperjet.io
+Cc: 
+Subject: Re: Staging is down again
+In-Reply-To: m003
+Cited: m001
+Sent-At: 2026-09-28T04:17:18
+
+Hi Raghav,
+
+The broker credentials were rotated. The old credentials are dead now. You'll need to point the worker at the new AMQP URL and restart it. I've updated the deploy config with the new URL.

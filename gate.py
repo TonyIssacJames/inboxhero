@@ -50,6 +50,11 @@ class Gate:
         self.sent = 0
         self.would_send = 0
         self.refused = 0
+        # This gate's own actions. _LOG below is process-wide and feeds
+        # gate_log.json; this list is what pending() reports, so a dashboard
+        # built later in the same process (R6 after R3 under --all) shows the
+        # actions IT proposed rather than every action the process has taken.
+        self._entries = []
 
     # -- the only way to cause an effect -----------------------------------
     def propose(self, action, target, why, payload=None, cap=None):
@@ -142,13 +147,14 @@ class Gate:
         }
         entry.update(extra)
         _LOG.append(entry)
+        self._entries.append(entry)
         trace.event(cap, "gate", **{k: v for k, v in entry.items() if k != "cap"})
         return entry
 
     # -- reporting ---------------------------------------------------------
     def pending(self):
-        """Everything the system wanted to do but did not do alone (pane 1)."""
-        return [e for e in _LOG
+        """Everything THIS gate wanted to do but did not do alone (pane 1)."""
+        return [e for e in self._entries
                 if e["action"] in config.IRREVERSIBLE_ACTIONS
                 and e["outcome"] in ("would-do", "declined", "refused")]
 

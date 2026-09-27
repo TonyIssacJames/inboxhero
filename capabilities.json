@@ -3,7 +3,7 @@
   "repo": "https://github.com/TonyIssacJames/inboxhero",
   "system": {
     "framework": "none",
-    "model": "offline deterministic provider (heuristics.py) by default, which is what the project was developed and tested against; set LLM_PROVIDER=gemini in .env to put gemini-2.5-flash on the triage and drafting paths. Every command below runs in either mode, with no API key required.",
+    "model": "gemini-2.5-flash via google-genai, configured through .env and read by config.py; this is the default provider and what the submitted trace.jsonl, outbox/ and dashboards were produced with. LLM_PROVIDER=ollama runs a local llama3.1:8b instead (used while building, to avoid spending free-tier quota). LLM_PROVIDER=offline is a deterministic heuristic stand-in, not a language model: it is what both model providers fall back to per message on failure, so every command below still runs on a machine with no key. Rate limits: LLM_CALL_DELAY seconds between calls, a 429 retry that uses the server's own retryDelay/Retry-After, and a daily-cap 429 that stops API calls for the rest of the run instead of retrying each message.",
     "messages_processed": 100,
     "rule_handled": "59 of 100 never reach a model (a further 9 are settled by the guard before the model path, so 32 messages are sent to the model)",
     "dispositions": [
@@ -46,7 +46,7 @@
       "tier": "B",
       "claim": "Drafts replies only from messages it actually retrieved, records the ids it used, and drafts nothing when the mailbox does not contain the answer.",
       "command": "python demo.py --cap R2",
-      "observable": "Three cases. m008 (Devika asking for the staging queue credentials) is answered from the earlier thread with 'cited: [m001, m003, m005]' and a 'secret:' line confirming the AMQP connection string in m003 is not repeated in the draft. m019 (the venue asking us to confirm 'the date you locked in') is answered 'the 20th' with 'cited: [m026, m036]' - two messages in a different thread, found by the date-fact lookup. m012 ('the thing we talked about after the standup') prints 'NO DRAFT' and 'cited: []'. Single message: python demo.py --cap R2 --msg m019",
+      "observable": "Three cases. m008 (Devika asking for the staging queue credentials) is answered from the earlier thread with 'cited: [m001, m003, m005]' and a 'secret:' line reporting that the evidence holds an AMQP connection string - the draft either never repeats it or is shown REDACTED, and neither the draft nor outbox/ ever contains the password. m019 (the venue asking us to confirm 'the date you locked in') is answered 'the 20th' with 'cited: [m026, m036]' - two messages in a different thread, found by the date-fact lookup. m012 ('the thing we talked about after the standup') prints 'NO DRAFT' and 'cited: []'. The cited ids come from retrieval, not the model, so they are the same under every provider. Single message: python demo.py --cap R2 --msg m019",
       "evidence": "trace.jsonl, events tagged cap=R2: a 'read' event listing the evidence ids precedes every 'draft' event, and m012 produces a 'no_grounding' event instead"
     },
     {
@@ -91,7 +91,7 @@
       "tier": "B",
       "claim": "Turns a completed run into three buckets - what needs you, what can wait, what was handled without you - plus everything due in the next seven days.",
       "command": "python demo.py --cap X1",
-      "observable": "Prints 'NEEDS YOU' (the escalations and replies, including m008, m018, m023 and m046), 'CAN WAIT' (m003, m044, m030, m040), 'DUE IN THE NEXT SEVEN DAYS' with each item's citing message ids, and a closing line counting what was archived, delegated or flagged without involving the owner.",
+      "observable": "Prints four sections: 'NEEDS YOU' (the replies and escalations, including the credential request m008 and the legal signature m018), 'CAN WAIT' (the deferred items), 'DUE IN THE NEXT SEVEN DAYS' with each item's citing message ids, and a closing count of what was archived, delegated or flagged without involving the owner. Which messages land in NEEDS YOU versus CAN WAIT is the model's judgement, so it shifts between providers; the section structure, the counts and the cited ids do not.",
       "evidence": "trace.jsonl, events tagged cap=X1 (an 'action' event recording the size of each bucket)"
     },
     {

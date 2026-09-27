@@ -22,16 +22,16 @@
       "from": "raghav@paperjet.io",
       "subject": "Staging is down again",
       "disposition": "reply",
-      "reason": "a question the owner can answer from the thread",
-      "decided_by": "model:offline"
+      "reason": "The email reports a critical system issue in staging and asks the recipient to investigate and fix it.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m003",
       "from": "sam@paperjet.io",
       "subject": "Re: Staging is down again",
-      "disposition": "defer",
-      "reason": "sent by the owner and still unanswered; tracked as a follow-up",
-      "decided_by": "model:offline"
+      "disposition": "escalate",
+      "reason": "The email provides new credentials and instructions to fix a downed staging environment, requiring immediate and careful human action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m112",
@@ -46,8 +46,8 @@
       "from": "raghav@paperjet.io",
       "subject": "Re: Staging is down again",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "The sender is confirming that the issue is resolved and thanking the recipient, so no further action is needed.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m088",
@@ -85,9 +85,9 @@
       "id": "m044",
       "from": "sam@paperjet.io",
       "subject": "Re: contractor invoice approval",
-      "disposition": "defer",
-      "reason": "sent by the owner and still unanswered; tracked as a follow-up",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The email requests the owner to approve a Q3 contractor invoice in the finance tool to unblock payment.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m097",
@@ -134,8 +134,8 @@
       "from": "devika@paperjet.io",
       "subject": "Re: Staging is down again",
       "disposition": "escalate",
-      "reason": "asks for credentials to be re-sent; a human decides how secrets move",
-      "decided_by": "model:offline"
+      "reason": "The sender is requesting credentials and a URL for a staging queue, which requires human verification before sharing sensitive access information.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m105",
@@ -229,25 +229,25 @@
       "id": "m026",
       "from": "priya@paperjet.io",
       "subject": "Launch week -- kickoff",
-      "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "This email kicks off a launch thread and requires a straightforward acknowledgment of receipt and participation.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m027",
       "from": "dan@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "This is a status update on design assets for a launch and requires no immediate action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m028",
       "from": "maya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "delegate",
-      "reason": "team update; owned by the sender, nothing for the owner to do",
-      "decided_by": "model:offline"
+      "disposition": "archive",
+      "reason": "This is an internal update confirming task ownership and a self-imposed deadline, requiring no action from the recipient.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m099",
@@ -270,24 +270,24 @@
       "from": "raghav@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "This is an informational update about a scheduled load test and does not require further action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m030",
       "from": "priya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "defer",
-      "reason": "a piece of work for the owner with a deadline in the message; scheduled, not answered",
-      "decided_by": "model:offline"
+      "reason": "The email requests the recipient to approve pricing copy by a specific date.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m033",
       "from": "maya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "The email provides an update on a document and invites comments, but does not require a direct email reply.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m115",
@@ -349,9 +349,9 @@
       "id": "m034",
       "from": "dan@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "delegate",
-      "reason": "team update; owned by the sender, nothing for the owner to do",
-      "decided_by": "model:offline"
+      "disposition": "archive",
+      "reason": "This is a status update indicating progress on a project and requires no action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m100",
@@ -373,9 +373,9 @@
       "id": "m038",
       "from": "chair@paperjet-board.org",
       "subject": "Board review scheduled",
-      "disposition": "archive",
-      "reason": "no action requested and no date attached",
-      "decided_by": "model:offline"
+      "disposition": "defer",
+      "reason": "This email confirms a future meeting with a specific date and time.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m116",
@@ -406,8 +406,8 @@
       "from": "wintermute@oldfriends.net",
       "subject": "coffee when you're back in town?",
       "disposition": "reply",
-      "reason": "a question the owner can answer from the thread",
-      "decided_by": "model:offline"
+      "reason": "This is a social invitation from an old friend that requires a personal response.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m109",
@@ -429,9 +429,9 @@
       "id": "m010",
       "from": "aria.f@northwind.vc",
       "subject": "Intro call this week?",
-      "disposition": "escalate",
-      "reason": "proposed time collides with another commitment or a stored preference",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The sender is requesting to schedule an introductory call and needs a confirmation of availability.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m101",
@@ -453,9 +453,9 @@
       "id": "m040",
       "from": "priya@paperjet.io",
       "subject": "board deck",
-      "disposition": "defer",
-      "reason": "a piece of work for the owner; scheduled, not answered",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The email is a direct request for the recipient to prepare and circulate a board deck, requiring a response and action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m057",
@@ -469,9 +469,9 @@
       "id": "m117",
       "from": "hr@paperjet.io",
       "subject": "Reminder: submit your timesheet",
-      "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "disposition": "defer",
+      "reason": "This is a reminder for a routine task with a future deadline.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m069",
@@ -493,9 +493,9 @@
       "id": "m035",
       "from": "raghav@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "delegate",
-      "reason": "team update; owned by the sender, nothing for the owner to do",
-      "decided_by": "model:offline"
+      "disposition": "archive",
+      "reason": "This is a status update indicating a successful staging deployment for a launch build, requiring no further action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m017",
@@ -558,16 +558,16 @@
       "from": "priya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "This is a team reminder about a hard deadline, requiring no direct action or reply from the recipient.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m042",
       "from": "jordan.okafor@gmail.com",
       "subject": "Backend role -- following up",
       "disposition": "reply",
-      "reason": "a question the owner can answer from the thread",
-      "decided_by": "model:offline"
+      "reason": "The sender is following up on a job application and has another offer with a deadline, requiring a direct response from the owner.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m078",
@@ -597,17 +597,17 @@
       "id": "m013",
       "from": "raghav@paperjet.io",
       "subject": "move our 1:1?",
-      "disposition": "escalate",
-      "reason": "proposed time collides with another commitment or a stored preference",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "This email requests to reschedule a recurring meeting.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m118",
       "from": "facilities@paperjet.io",
       "subject": "Office closed Monday",
       "disposition": "archive",
-      "reason": "internal update with nothing addressed to the owner",
-      "decided_by": "model:offline"
+      "reason": "This is an informational announcement about office closure and working from home, requiring no action from the recipient.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m070",
@@ -637,17 +637,17 @@
       "id": "m059",
       "from": "devika@paperjet.io",
       "subject": "PTO next week",
-      "disposition": "delegate",
-      "reason": "team update; owned by the sender, nothing for the owner to do",
-      "decided_by": "model:offline"
+      "disposition": "archive",
+      "reason": "This is an informational email about a colleague's planned time off and requires no action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m012",
       "from": "priya@paperjet.io",
       "subject": "the thing",
-      "disposition": "escalate",
-      "reason": "refers to something discussed outside the mailbox; only the owner knows",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The sender is asking for an update on a task that is needed before an upcoming call.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m039",
@@ -702,40 +702,40 @@
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- SAFE amendment for signature",
       "disposition": "escalate",
-      "reason": "legal document needing the owner's signature or review",
-      "decided_by": "model:offline"
+      "reason": "The email requests the user to review and sign a legal document (SAFE amendment) by Friday, which has financial and legal implications.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m016",
       "from": "partners@acme-corp.com",
       "subject": "PaperJet demo -- Wednesday?",
-      "disposition": "escalate",
-      "reason": "proposed time collides with another commitment or a stored preference",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The sender is asking to confirm a meeting time for a product demo, which requires a direct response.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m046",
       "from": "editor@techbrief.news",
       "subject": "Quick question for our launch coverage",
-      "disposition": "escalate",
-      "reason": "press enquiry; a public statement is the owner's wording",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The sender is asking for a quick quote and confirmation of a launch date, which requires a straightforward answer from the recipient.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m019",
       "from": "events@thegrandvenue.com",
       "subject": "Confirming your booking",
       "disposition": "reply",
-      "reason": "a question the owner can answer from the thread",
-      "decided_by": "model:offline"
+      "reason": "The owner needs to confirm a product launch event booking within 48 hours.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m043",
       "from": "aria.f@northwind.vc",
       "subject": "one more slot",
-      "disposition": "escalate",
-      "reason": "proposed time collides with another commitment or a stored preference",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The sender is requesting to adjust a meeting time to accommodate an additional partner.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m103",
@@ -757,9 +757,9 @@
       "id": "m048",
       "from": "j.hartwell@hartwellcho.com",
       "subject": "PaperJet -- board minutes for review",
-      "disposition": "escalate",
-      "reason": "legal document needing the owner's signature or review",
-      "decided_by": "model:offline"
+      "disposition": "reply",
+      "reason": "The owner must review the draft minutes and provide feedback or corrections by Monday.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m047",
@@ -773,17 +773,17 @@
       "id": "m055",
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- one more signature needed",
-      "disposition": "escalate",
-      "reason": "legal document needing the owner's signature or review",
-      "decided_by": "model:offline"
+      "disposition": "defer",
+      "reason": "The email requests a signature on an IP assignment with a deadline before month-end, making it a task to be completed later.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m119",
       "from": "notes@paperjet.io",
       "subject": "Your 1:1 notes from last week",
-      "disposition": "delegate",
-      "reason": "team update; owned by the sender, nothing for the owner to do",
-      "decided_by": "model:offline"
+      "disposition": "archive",
+      "reason": "This is an informational notification that meeting notes are available, requiring no immediate action.",
+      "decided_by": "model:gemini"
     },
     {
       "id": "m095",

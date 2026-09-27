@@ -41,10 +41,11 @@ python demo.py --reset      clear prefs.json, outbox/, trace.jsonl, dashboards
 
 ### Dependencies
 
-The default (offline) provider uses the standard library only, so `demo.py`
-runs on a clean Python 3.10+ with nothing installed. `requirements.txt` holds
-the two optional packages: `google-genai` for the Gemini path and
-`python-dotenv` for reading `.env`.
+`google-genai` (the Gemini path) and `python-dotenv` (reading `.env`) are in
+`requirements.txt`. Both are optional in the sense that the project degrades
+rather than dies: with neither installed, `demo.py` still runs every command on
+a clean Python 3.10+ using the deterministic fallback, and says so on its first
+line. The Ollama path uses the standard library only.
 
 ### Configuration
 
@@ -53,10 +54,17 @@ Everything is read from the environment through `config.py`. Copy
 is not in the submission.
 
 ```
-LLM_PROVIDER=offline        # or gemini
-GEMINI_API_KEY=...          # only needed for LLM_PROVIDER=gemini
+LLM_PROVIDER=gemini         # gemini | ollama | offline
+GEMINI_API_KEY=...          # needed for LLM_PROVIDER=gemini
 MODEL_NAME=gemini-2.5-flash
+OLLAMA_MODEL=llama3.1:8b    # needed for LLM_PROVIDER=ollama
+LLM_CALL_DELAY=4            # seconds between API calls
 ```
+
+`gemini` is the default and produced the submitted artifacts. `ollama` points at
+a local model for building without spending quota. `offline` is a deterministic
+stand-in, not a language model, and is what the other two fall back to per
+message when a call fails - which is why every command runs with no key.
 
 ---
 
@@ -173,9 +181,13 @@ be argued with.
 | Callbacks / tracing | `trace.py` |
 
 The thing a framework would have handed me is **retry, pacing and structured
-output handling around the model call** — `GeminiProvider._complete()` is about
-forty lines of 429 backoff, delay and JSON extraction that CrewAI or ADK would
-have provided for free, and writing it myself bought nothing.
+output handling around the model call** — `GeminiProvider._complete()` is the
+429 handling, the call spacing and the JSON extraction that CrewAI or ADK would
+have provided for free. Writing it myself bought one thing I would not have got
+by default: the distinction between a per-minute 429, which is worth waiting the
+server's stated `retryDelay` for, and a daily-cap 429, which means every
+remaining message will fail too and the run should stop calling the API
+altogether. Everything else in those lines was reinvention.
 
 Everything else a framework would have given me, I would have had to disable.
 Frameworks are built around an agent that holds tools and decides when to call

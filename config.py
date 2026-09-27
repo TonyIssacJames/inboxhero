@@ -39,14 +39,20 @@ def _path(name, default):
 
 
 # --- Provider selection ----------------------------------------------------
-PROVIDER = os.getenv("LLM_PROVIDER", "offline").strip().lower()
+PROVIDER = os.getenv("LLM_PROVIDER", "gemini").strip().lower()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash").strip()
 TEMPERATURE = float(os.getenv("TEMPERATURE", "0"))
 
 # Free-tier friendliness: a pause between calls and a bounded retry on HTTP 429.
+# The retry wait comes from the server when it offers one (see llm_provider).
 LLM_CALL_DELAY = float(os.getenv("LLM_CALL_DELAY", "4"))
 LLM_MAX_RETRIES = int(os.getenv("LLM_MAX_RETRIES", "3"))
+
+# --- Local model (LLM_PROVIDER=ollama) -------------------------------------
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434").strip()
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b").strip()
+OLLAMA_TIMEOUT = float(os.getenv("OLLAMA_TIMEOUT", "120"))
 
 # --- The mailbox -----------------------------------------------------------
 OWNER = os.getenv("OWNER_ADDRESS", "sam@paperjet.io").strip().lower()

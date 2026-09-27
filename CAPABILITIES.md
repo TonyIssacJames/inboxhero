@@ -12,10 +12,11 @@ python demo.py --check         # self-test: data format and every citation
 python demo.py --reset         # clear prefs.json, outbox/, trace.jsonl
 ```
 
-No API key is needed. `LLM_PROVIDER` defaults to `offline`, a deterministic
-provider in `heuristics.py`; set it to `gemini` in `.env` to put
-gemini-2.5-flash on the triage and drafting paths. Every command below produces
-the same structure either way.
+`LLM_PROVIDER` defaults to `gemini` (gemini-2.5-flash, key in `.env`), which is
+what the submitted run was produced with. `ollama` runs a local model instead.
+`offline` is a deterministic stand-in - not a language model - and it is what
+both providers fall back to when a call fails, so every command below still runs
+on a machine with no key. The first line of output names the provider in use.
 
 ---
 
@@ -38,13 +39,29 @@ the trace — is kept in small JSON files beside the code.
   first). A crew or a graph would have added a scheduler I do not need and
   obscured the one property this assignment is actually about: that the model
   cannot reach a tool. See Final Report Q4 in `README.md`.
-- **Model: offline by default.** `heuristics.py` is a deterministic stand-in
-  used for triage, drafting and summarising. It exists so that every command in
-  this manifest runs on a fresh checkout with no key and no quota, so runs are
-  reproducible, and so there is a control to compare the Gemini path against.
-  The Gemini path is one call per model-path message, paced by
-  `LLM_CALL_DELAY` and retried with backoff on HTTP 429; any failure falls back
-  to the offline implementation rather than ending the run.
+- **Model: gemini-2.5-flash, with two fallbacks.** One call per model-path
+  message - 32 of the 100, since rules and the guard settle the rest. A local
+  `llama3.1:8b` over Ollama is the build-time alternative, so iterating costs no
+  free-tier quota. `heuristics.py` is the last resort: a deterministic
+  stand-in, and explicitly *not* a language model. It exists so a marker with no
+  key can still run every command here, and so there is a control to compare the
+  model against. When it is in use the first line of output says so.
+- **Rate limits.** Pacing is `LLM_CALL_DELAY` seconds (default 4, inside the
+  usual fifteen-per-minute free tier), measured from the end of the previous
+  call. On a 429 the wait is the server's own `retryDelay` or `Retry-After`
+  when it sends one, capped at 90s, and a doubling backoff from 5s when it does
+  not - guessing 5s against a server asking for 47 just burns both retries. A
+  429 that names a *daily* cap is treated differently from a per-minute one:
+  waiting cannot help, so the provider says so once, stops calling the API for
+  the rest of the run, and lets the offline path answer the remaining messages.
+  `is_daily_cap()` matches only wording that names a day, because
+  "quota exceeded" appears in the per-minute error too.
+- **No batching, on purpose.** The brief suggests considering it, and it would
+  cut 32 calls to about 3. Each call here carries exactly one untrusted email,
+  so m024's "ignore all previous instructions" sits alone in its own context
+  and cannot colour how nine other messages in the same batch are classified.
+  The 59 messages the rules handle already bank a larger saving than batching
+  would have.
 - **Retrieval: thread-walk, then a date-fact lookup, then keyword.** An inbox
   already stores its own conversation graph in `thread_id`, so walking the
   thread is exact and free — that is how m008 is answered from m003. Two

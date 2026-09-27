@@ -3,10 +3,6 @@ Cc:
 Subject: Re: Staging is down again
 In-Reply-To: m001
 Cited: m003, m008
-Sent-At: 2026-09-26T17:54:35
+Sent-At: 2026-09-28T02:51:40
 
-Hi Raghav,
-
-Picking this up - there are already 2 earlier messages in this thread and the detail is there. I will come back to you on it shortly.
-
-Sam
+The staging AMQP URL is amqp://pj_stage@broker-stg.paperjet.io:5672/pjs. Point the worker at that and restart it.

@@ -49,6 +49,15 @@ TEMPERATURE = float(os.getenv("TEMPERATURE", "0"))
 LLM_CALL_DELAY = float(os.getenv("LLM_CALL_DELAY", "4"))
 LLM_MAX_RETRIES = int(os.getenv("LLM_MAX_RETRIES", "3"))
 
+# --- Response cache: a TESTING aid, off by default -------------------------
+# When on, every model response is saved to LLM_CACHE_FILE, keyed by the exact
+# request, and an identical request is answered from the file instead of the
+# API. It exists so that repeated test runs cost nothing; it is not part of
+# how the system is meant to work, and the submitted run was made with it off.
+ENABLE_CACHED_LLM_RESPONSE = os.getenv(
+    "ENABLE_CACHED_LLM_RESPONSE", "0").strip().lower() in ("1", "true", "yes", "on")
+LLM_CACHE_FILE = _path("LLM_CACHE_FILE", "llm_cache.json")
+
 # --- Local model (LLM_PROVIDER=ollama) -------------------------------------
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434").strip()
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b").strip()

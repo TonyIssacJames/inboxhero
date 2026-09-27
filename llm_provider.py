@@ -52,7 +52,9 @@ Two things this interface deliberately does NOT have:
     saving that batching would have bought.
 """
 
+import hashlib
 import json
+import os
 import re
 import time
 
@@ -76,6 +78,60 @@ class OfflineProvider:
 
 
 # ---------------------------------------------------------------------------
+# Response cache - a testing aid, off unless ENABLE_CACHED_LLM_RESPONSE is set
+# ---------------------------------------------------------------------------
+# Keyed by a hash of (model + system prompt + message), so a cached answer can
+# only ever come back for the exact request that produced it. Change the
+# inbox, a prompt or the model and the key changes, which calls the API again.
+# This is here to make repeated test runs free. It is off by default, it
+# announces itself when on, and it is not what the submitted run used.
+_CACHE = None
+
+
+def _cache():
+    global _CACHE
+    if _CACHE is None:
+        _CACHE = {}
+        if os.path.exists(config.LLM_CACHE_FILE):
+            try:
+                with open(config.LLM_CACHE_FILE, "r", encoding="utf-8") as f:
+                    loaded = json.load(f)
+                if isinstance(loaded, dict):
+                    _CACHE = loaded
+            except (json.JSONDecodeError, OSError):
+                _CACHE = {}   # a corrupt cache is not worth a crash
+    return _CACHE
+
+
+def cache_size():
+    return len(_cache())
+
+
+def cache_key(model, system, user):
+    digest = hashlib.sha256()
+    for part in (model, system, user):
+        digest.update(part.encode("utf-8", "replace"))
+        digest.update(b"\x00")
+    return digest.hexdigest()[:32]
+
+
+def _cache_get(key):
+    entry = _cache().get(key)
+    return entry.get("response") if isinstance(entry, dict) else None
+
+
+def _cache_put(key, response, model, cap):
+    store = _cache()
+    store[key] = {"response": response, "model": model, "cap": cap,
+                  "ts": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    try:
+        with open(config.LLM_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(store, f, indent=2, ensure_ascii=False)
+    except OSError as exc:  # pragma: no cover
+        print("  (cache write failed: %s)" % exc)
+
+
+# ---------------------------------------------------------------------------
 # Shared behaviour for anything that talks to a model
 # ---------------------------------------------------------------------------
 class _ModelProvider:
@@ -84,7 +140,24 @@ class _ModelProvider:
     name = "model"
     model = "?"
 
-    def _complete(self, system, user, cap="-"):  # pragma: no cover - subclass
+    def _complete(self, system, user, cap="-"):
+        """
+        The one place every model request passes through, which is why the
+        cache lives here: it covers triage and drafting, every capability, in
+        about a dozen lines.
+        """
+        if config.ENABLE_CACHED_LLM_RESPONSE:
+            key = cache_key(self.model, system, user)
+            hit = _cache_get(key)
+            if hit is not None:
+                trace.event(cap, "model_call", model=self.model, cached=True)
+                return hit
+            answer = self._call_model(system, user, cap)
+            _cache_put(key, answer, self.model, cap)
+            return answer
+        return self._call_model(system, user, cap)
+
+    def _call_model(self, system, user, cap="-"):  # pragma: no cover - subclass
         raise NotImplementedError
 
     @staticmethod
@@ -203,7 +276,7 @@ class GeminiProvider(_ModelProvider):
         self._last_call = 0.0
         self._quota_spent = False   # set when a daily cap is seen
 
-    def _complete(self, system, user, cap="-"):
+    def _call_model(self, system, user, cap="-"):
         from google.genai import types
 
         if self._quota_spent:
@@ -291,7 +364,7 @@ class OllamaProvider(_ModelProvider):
         with self._request.urlopen(req, timeout=timeout or config.OLLAMA_TIMEOUT) as resp:
             return json.loads(resp.read().decode("utf-8"))
 
-    def _complete(self, system, user, cap="-"):
+    def _call_model(self, system, user, cap="-"):
         body = self._post({
             "model": self.model,
             "stream": False,
@@ -327,6 +400,12 @@ def get_provider():
         print("  ! Unknown LLM_PROVIDER=%r - using the offline provider." % wanted)
         _PROVIDER = OfflineProvider()
         return _PROVIDER
+
+    if config.ENABLE_CACHED_LLM_RESPONSE:
+        print("  cache: ON (%d entries) - identical requests are replayed from %s,"
+              % (cache_size(), os.path.basename(config.LLM_CACHE_FILE)))
+        print("         not sent to the model. Testing aid; set "
+              "ENABLE_CACHED_LLM_RESPONSE=0 for a live run.")
 
     try:
         _PROVIDER = builder()

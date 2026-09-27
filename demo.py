@@ -368,10 +368,11 @@ def reset():
     memory_store.clear()
     gate_module.clear_outbox()
     for path in (config.TRACE_FILE, config.DECISIONS_FILE, config.GATE_LOG_FILE,
-                 config.DASHBOARD_JSON, config.DASHBOARD_HTML):
+                 config.DASHBOARD_JSON, config.DASHBOARD_HTML, config.LLM_CACHE_FILE):
         if os.path.exists(path):
             os.remove(path)
-    print("Cleared prefs.json, outbox/, trace.jsonl, decisions.json, gate_log.json, dashboard.*")
+    print("Cleared prefs.json, outbox/, trace.jsonl, decisions.json, gate_log.json,")
+    print("dashboard.* and the response cache. The next run calls the model for real.")
 
 
 def run_all(args, provider):

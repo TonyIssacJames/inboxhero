@@ -61,10 +61,17 @@ OLLAMA_MODEL=llama3.1:8b    # needed for LLM_PROVIDER=ollama
 LLM_CALL_DELAY=4            # seconds between API calls
 ```
 
-`gemini` is the default and produced the submitted artifacts. `ollama` points at
-a local model for building without spending quota. `offline` is a deterministic
-stand-in, not a language model, and is what the other two fall back to per
-message when a call fails - which is why every command runs with no key.
+`gemini` is the default. `ollama` points at a local model for building without
+spending quota. `offline` is a deterministic stand-in, not a language model, and
+is what the other two fall back to per message when a call fails - which is why
+every command runs with no key.
+
+`ENABLE_CACHED_LLM_RESPONSE` is a testing aid, off by default: it replays
+identical requests from `llm_cache.json` instead of calling the API, so repeated
+test runs cost nothing. The submitted `trace.jsonl`, `outbox/` and dashboards
+were produced with `LLM_PROVIDER=gemini`; each model call in the trace records
+whether it was answered live or replayed, so you do not have to take my word
+for it.
 
 ---
 

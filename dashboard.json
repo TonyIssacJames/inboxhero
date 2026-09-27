@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T04:16:46",
+  "generated_at": "2026-09-28T04:52:12",
   "provider": "gemini",
   "today": "2026-09-10",
   "counts": {
@@ -8,11 +8,11 @@
     "model_handled": 32,
     "guard_handled": 9,
     "undecided": 0,
-    "drafts": 3
+    "drafts": 6
   },
   "gate": {
     "sent": 0,
-    "would_send": 3,
+    "would_send": 6,
     "refused": 0,
     "mode": "dry-run"
   },
@@ -36,6 +36,33 @@
       "decided_by": "dry-run"
     },
     {
+      "message": "m027",
+      "from": "dan@paperjet.io",
+      "action": "send",
+      "to": "dan@paperjet.io",
+      "why": "reply to dan@paperjet.io leaves the system and cannot be unsent",
+      "outcome": "would-do",
+      "decided_by": "dry-run"
+    },
+    {
+      "message": "m030",
+      "from": "priya@paperjet.io",
+      "action": "send",
+      "to": "priya@paperjet.io",
+      "why": "reply to priya@paperjet.io leaves the system and cannot be unsent",
+      "outcome": "would-do",
+      "decided_by": "dry-run"
+    },
+    {
+      "message": "m033",
+      "from": "maya@paperjet.io",
+      "action": "send",
+      "to": "maya@paperjet.io",
+      "why": "reply to maya@paperjet.io leaves the system and cannot be unsent",
+      "outcome": "would-do",
+      "decided_by": "dry-run"
+    },
+    {
       "message": "m019",
       "from": "events@thegrandvenue.com",
       "action": "send",
@@ -49,7 +76,7 @@
       "from": "devika@paperjet.io",
       "action": "escalate",
       "to": "",
-      "why": "The email requests credentials, which requires human verification and secure handling.",
+      "why": "The sender is requesting credentials and a URL for a staging queue, which requires human verification before sharing sensitive access information.",
       "outcome": "waiting for the owner",
       "decided_by": "model:gemini"
     },

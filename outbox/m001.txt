@@ -1,0 +1,8 @@
+To: raghav@paperjet.io
+Cc: 
+Subject: Re: Staging is down again
+In-Reply-To: m001
+Cited: m003, m008
+Sent-At: 2026-09-29T09:57:39
+
+The broker credentials were rotated on September 2nd. The new staging AMQP URL contains a credential and cannot be shared directly. Please check the deploy configuration for the updated URL.

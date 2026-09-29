@@ -22,15 +22,15 @@
       "from": "raghav@paperjet.io",
       "subject": "Staging is down again",
       "disposition": "reply",
-      "reason": "The email reports a critical system issue in staging and asks the recipient to investigate and fix it.",
+      "reason": "The sender is reporting a critical system issue and asking the recipient to investigate and fix it.",
       "decided_by": "model:gemini"
     },
     {
       "id": "m003",
       "from": "sam@paperjet.io",
       "subject": "Re: Staging is down again",
-      "disposition": "reply",
-      "reason": "The email provides new credentials and instructions to update a worker, requiring immediate action from the owner.",
+      "disposition": "escalate",
+      "reason": "The email provides new credentials and instructions to fix a downed staging environment, requiring immediate and careful human action.",
       "decided_by": "model:gemini"
     },
     {
@@ -46,7 +46,7 @@
       "from": "raghav@paperjet.io",
       "subject": "Re: Staging is down again",
       "disposition": "archive",
-      "reason": "The email confirms a fix and no further action is required.",
+      "reason": "The sender is confirming that the issue is resolved and thanking the recipient, so no further action is needed.",
       "decided_by": "model:gemini"
     },
     {
@@ -230,15 +230,15 @@
       "from": "priya@paperjet.io",
       "subject": "Launch week -- kickoff",
       "disposition": "reply",
-      "reason": "This email kicks off a launch thread and requires a straightforward acknowledgment of receipt and participation.",
+      "reason": "The email kicks off a launch discussion thread, requiring the owner's participation or acknowledgement.",
       "decided_by": "model:gemini"
     },
     {
       "id": "m027",
       "from": "dan@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "reply",
-      "reason": "This is a status update on design assets for a launch, likely requiring acknowledgement or further input from the owner.",
+      "disposition": "archive",
+      "reason": "This is a status update on design assets for a launch and requires no immediate action.",
       "decided_by": "model:gemini"
     },
     {
@@ -277,16 +277,16 @@
       "id": "m030",
       "from": "priya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "defer",
-      "reason": "The email requests the recipient to approve pricing copy by a specific date.",
+      "disposition": "reply",
+      "reason": "Sam needs to approve the final pricing copy for the annual discount by the 12th.",
       "decided_by": "model:gemini"
     },
     {
       "id": "m033",
       "from": "maya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
-      "disposition": "archive",
-      "reason": "The email provides an update on a document and invites comments, but does not require a direct email reply.",
+      "disposition": "reply",
+      "reason": "The email requests comments on a shared document draft.",
       "decided_by": "model:gemini"
     },
     {
@@ -406,7 +406,7 @@
       "from": "wintermute@oldfriends.net",
       "subject": "coffee when you're back in town?",
       "disposition": "reply",
-      "reason": "This is a social invitation from an old friend that requires a personal response to coordinate a meeting.",
+      "reason": "This is a social invitation from an old friend that requires a personal response.",
       "decided_by": "model:gemini"
     },
     {
@@ -454,7 +454,7 @@
       "from": "priya@paperjet.io",
       "subject": "board deck",
       "disposition": "reply",
-      "reason": "The email contains a direct request for the recipient to complete and circulate a board deck by a specific deadline.",
+      "reason": "The email is a direct request for the recipient to prepare and circulate a board deck, requiring a response and action.",
       "decided_by": "model:gemini"
     },
     {
@@ -494,7 +494,7 @@
       "from": "raghav@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "This is a status update indicating a successful staging deployment for a launch build, requiring no further action.",
+      "reason": "This is a status update indicating a successful staging deployment, requiring no immediate action.",
       "decided_by": "model:gemini"
     },
     {
@@ -566,7 +566,7 @@
       "from": "jordan.okafor@gmail.com",
       "subject": "Backend role -- following up",
       "disposition": "reply",
-      "reason": "The sender is following up on a job application and has an offer deadline, requiring a direct and timely response.",
+      "reason": "The sender is following up on a job application and has another offer with a deadline, requiring a direct response from the owner.",
       "decided_by": "model:gemini"
     },
     {
@@ -598,7 +598,7 @@
       "from": "raghav@paperjet.io",
       "subject": "move our 1:1?",
       "disposition": "reply",
-      "reason": "This is a request to reschedule a recurring meeting.",
+      "reason": "This email requests to reschedule a recurring meeting.",
       "decided_by": "model:gemini"
     },
     {
@@ -606,7 +606,7 @@
       "from": "facilities@paperjet.io",
       "subject": "Office closed Monday",
       "disposition": "archive",
-      "reason": "This is an informational announcement about the office closure for maintenance.",
+      "reason": "This is an informational announcement about office closure and working from home, requiring no action from the recipient.",
       "decided_by": "model:gemini"
     },
     {
@@ -702,7 +702,7 @@
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- SAFE amendment for signature",
       "disposition": "escalate",
-      "reason": "The email requests review and signature of a SAFE amendment, which is a legal and financial document with irreversible implications.",
+      "reason": "The email requests the user to review and sign a legal document (SAFE amendment) by Friday, which has financial and legal implications.",
       "decided_by": "model:gemini"
     },
     {
@@ -726,7 +726,7 @@
       "from": "events@thegrandvenue.com",
       "subject": "Confirming your booking",
       "disposition": "reply",
-      "reason": "The email requires a reply to confirm a booking for a product launch event before the hold expires in 48 hours.",
+      "reason": "The owner needs to confirm a product launch event booking within 48 hours.",
       "decided_by": "model:gemini"
     },
     {
@@ -734,7 +734,7 @@
       "from": "aria.f@northwind.vc",
       "subject": "one more slot",
       "disposition": "reply",
-      "reason": "The sender is requesting a meeting time, which requires a direct response from the inbox owner to confirm availability.",
+      "reason": "The sender is requesting to adjust a meeting time to accommodate an additional partner.",
       "decided_by": "model:gemini"
     },
     {

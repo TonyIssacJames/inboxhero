@@ -5,7 +5,7 @@
     "framework": "none",
     "model": "gemini-2.5-flash via google-genai, configured through .env and read by config.py; this is the default provider and what the submitted trace.jsonl, outbox/ and dashboards were produced with. LLM_PROVIDER=ollama runs a local llama3.1:8b instead (used while building, to avoid spending free-tier quota). LLM_PROVIDER=offline is a deterministic heuristic stand-in, not a language model: it is what both model providers fall back to per message on failure, so every command below still runs on a machine with no key. Rate limits: LLM_CALL_DELAY seconds between calls, a 429 retry that uses the server's own retryDelay/Retry-After, and a daily-cap 429 that stops API calls for the rest of the run instead of retrying each message.",
     "messages_processed": 100,
-    "rule_handled": "59 of 100 never reach a model (a further 9 are settled by the guard before the model path, so 32 messages are sent to the model)",
+    "rule_handled": 59,
     "dispositions": [
       "reply",
       "archive",
@@ -14,7 +14,7 @@
       "escalate",
       "flag"
     ],
-    "retrieval": "thread-walk, with a date-fact lookup and keyword search as cross-thread fallbacks",
+    "retrieval": "thread-walk",
     "irreversible": [
       "send",
       "delete"

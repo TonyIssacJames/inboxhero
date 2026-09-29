@@ -81,7 +81,8 @@ the trace — is kept in small JSON files beside the code.
   `defer` — real work with a date on it, scheduled rather than answered now.
   `delegate` — a colleague owns it; nothing for the owner to do.
   `escalate` — a human must decide before anything happens (money, legal,
-  credentials, a time that collides, anything the mailbox cannot ground).
+  credentials, a time that collides, anything the mailbox cannot ground; see
+  the escalation line below for how this differs between providers).
   `flag` — hostile or deceptive: quarantined, left in place, no action taken.
 - **Reversible vs irreversible.** `draft`, `label`, `archive`, `defer`, `flag`
   and `note` are reversible: they write files this project owns, and re-running
@@ -101,14 +102,25 @@ the trace — is kept in small JSON files beside the code.
 - **Escalation line, and what it costs.** Only sends to people are gated
   individually. Archiving, deferring, delegating and flagging happen without
   asking, and the 59 rule-decided messages are never mentioned. That keeps the
-  approval queue at about two items per run instead of forty, which is the whole
-  point: forty approvals get rubber-stamped, two get read. What I traded away is
-  real — a wrongly archived internal note is possible and the owner will not be
-  asked about it. I accepted that because archiving is reversible and the
-  messages at risk are the ones the rules already recognise as receipts. Where I
-  did *not* accept it: anything touching money, legal signature, credentials, a
-  proposed time that collides, or a message the mailbox cannot ground goes to
-  `escalate` even though that lengthens the queue.
+  approval queue to a handful of items per run instead of forty, which is the
+  whole point: forty approvals get rubber-stamped, a handful get read. What I
+  traded away is real - a wrongly archived internal note is possible and the
+  owner will not be asked about it. I accepted that because archiving is
+  reversible and the messages at risk are the ones the rules already recognise
+  as receipts.
+  Where the line sits depends on the provider, and I want to be precise about
+  it. The guard (hostile and phishing mail, before the model) and the secret
+  check in `drafter.py` (a credential found in the evidence is never repeated
+  in a draft, as with m008) run on every provider. The finer rules - legal
+  signatures, money or contracts, a proposed time that collides, a message the
+  mailbox cannot ground - are applied as `escalate` by the deterministic
+  `offline` path. With `LLM_PROVIDER=gemini` the model's label is used as
+  returned, so in the submitted Gemini run some of those messages (for example m019, m043, m010,
+  m013, m016) are labelled `reply` rather than `escalate`. That is safe in the
+  sense that matters - every send still stops at the gate and is logged, and
+  ungroundable messages still get no draft - but it means the approval queue,
+  not the label, is the real line under Gemini. Enforcing the offline rules on
+  top of the model's label is the obvious next change.
 - **Untrusted text.** Message content reaching a model is wrapped in
   `<untrusted_email>` markers, but the markers are not the defence — an attacker
   can write the closing marker. The defence is that the model is never given a

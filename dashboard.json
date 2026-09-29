@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T09:23:30",
+  "generated_at": "2026-09-29T12:05:15",
   "provider": "gemini",
   "today": "2026-09-10",
   "counts": {
@@ -8,11 +8,11 @@
     "model_handled": 32,
     "guard_handled": 9,
     "undecided": 0,
-    "drafts": 3
+    "drafts": 5
   },
   "gate": {
     "sent": 0,
-    "would_send": 3,
+    "would_send": 5,
     "refused": 0,
     "mode": "dry-run"
   },
@@ -27,11 +27,29 @@
       "decided_by": "dry-run"
     },
     {
-      "message": "m003",
-      "from": "sam@paperjet.io",
+      "message": "m027",
+      "from": "dan@paperjet.io",
       "action": "send",
-      "to": "sam@paperjet.io",
-      "why": "reply to sam@paperjet.io leaves the system and cannot be unsent",
+      "to": "dan@paperjet.io",
+      "why": "reply to dan@paperjet.io leaves the system and cannot be unsent",
+      "outcome": "would-do",
+      "decided_by": "dry-run"
+    },
+    {
+      "message": "m030",
+      "from": "priya@paperjet.io",
+      "action": "send",
+      "to": "priya@paperjet.io",
+      "why": "reply to priya@paperjet.io leaves the system and cannot be unsent",
+      "outcome": "would-do",
+      "decided_by": "dry-run"
+    },
+    {
+      "message": "m033",
+      "from": "maya@paperjet.io",
+      "action": "send",
+      "to": "maya@paperjet.io",
+      "why": "reply to maya@paperjet.io leaves the system and cannot be unsent",
       "outcome": "would-do",
       "decided_by": "dry-run"
     },
@@ -49,7 +67,7 @@
       "from": "devika@paperjet.io",
       "action": "escalate",
       "to": "",
-      "why": "The sender is requesting credentials and a URL for a staging queue, which requires human verification before sharing sensitive access information.",
+      "why": "The email requests credentials, which requires human verification and secure handling.",
       "outcome": "waiting for the owner",
       "decided_by": "model:gemini"
     },
@@ -126,15 +144,6 @@
       "response": "flagged for the owner; no reply, no payment, no click",
       "note": "",
       "quote": "Sam, I'm stuck in the board pre-meet and can't get on a call. We need to secure the venue deposit for the offsite today or we lose the slot. Can you wire $3,200 to the vendor now? I'll forward the inv…"
-    },
-    {
-      "message": "m044",
-      "from": "sam@paperjet.io",
-      "kind": "could not be grounded",
-      "attempted": "draft a reply",
-      "response": "no draft written: no earlier message in the mailbox answers this",
-      "note": "",
-      "quote": "Priya -- can you approve the Q3 contractor invoice in the finance tool when you get a sec? It's blocking their payment. No rush but ideally this week."
     },
     {
       "message": "m026",

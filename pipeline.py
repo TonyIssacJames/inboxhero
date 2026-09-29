@@ -126,6 +126,20 @@ def run(provider, cap="R1", store_preferences=False, verbose=False):
                 source = "model:" + provider.name
                 model_handled += 1
 
+                # The owner's own sent mail is never something to reply to -
+                # replying would be the owner writing to themselves. The
+                # offline path already knows this; a model does not always
+                # (the Sep 28 Gemini run replied to m003). So it is enforced
+                # here, after the model, for every provider.
+                if message.sender == config.OWNER and disposition == "reply":
+                    trace.event(cap, "override", msg_id=message.id,
+                                model_said=disposition, now="defer",
+                                rule="owner_sent_mail")
+                    disposition = "defer"
+                    reason = ("sent by the owner, not to the owner; tracked for "
+                              "a follow-up, never replied to (model said reply)")
+                    source += "+owner_rule"
+
         decisions.append({
             "id": message.id,
             "from": message.sender,

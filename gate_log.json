@@ -1,6 +1,6 @@
 [
   {
-    "ts": "2026-09-29T09:57:39",
+    "ts": "2026-09-29T12:15:52",
     "cap": "R3",
     "action": "send",
     "message": "m001",
@@ -11,18 +11,7 @@
     "to": "raghav@paperjet.io"
   },
   {
-    "ts": "2026-09-29T09:57:46",
-    "cap": "R3",
-    "action": "send",
-    "message": "m030",
-    "why_gated": "reply to priya@paperjet.io leaves the system and cannot be unsent",
-    "decided_by": "--yes",
-    "outcome": "done",
-    "file": "outbox\\m030.txt",
-    "to": "priya@paperjet.io"
-  },
-  {
-    "ts": "2026-09-29T09:57:54",
+    "ts": "2026-09-29T12:16:05",
     "cap": "R3",
     "action": "send",
     "message": "m033",
@@ -33,7 +22,7 @@
     "to": "maya@paperjet.io"
   },
   {
-    "ts": "2026-09-29T09:58:20",
+    "ts": "2026-09-29T12:16:31",
     "cap": "R3",
     "action": "send",
     "message": "m019",
@@ -44,7 +33,7 @@
     "to": "events@thegrandvenue.com"
   },
   {
-    "ts": "2026-09-29T09:58:33",
+    "ts": "2026-09-29T12:16:37",
     "cap": "R3",
     "action": "delete",
     "message": "m024",

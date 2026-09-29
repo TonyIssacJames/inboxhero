@@ -115,8 +115,12 @@ the trace — is kept in small JSON files beside the code.
   signatures, money or contracts, a proposed time that collides, a message the
   mailbox cannot ground - are applied as `escalate` by the deterministic
   `offline` path. With `LLM_PROVIDER=gemini` the model's label is used as
-  returned, so in the submitted Gemini run some of those messages (for example m019, m043, m010,
-  m013, m016) are labelled `reply` rather than `escalate`. That is safe in the
+  returned - with one exception enforced in `pipeline.py` for every provider:
+  mail the owner sent is never labelled `reply` (it becomes `defer`, tracked
+  for a follow-up), because replying to it would be the owner writing to
+  themselves. In the submitted Gemini run, some messages that the finer rules
+  would escalate (for example m019, m043, m010, m013, m016) are labelled
+  `reply` rather than `escalate`. That is safe in the
   sense that matters - every send still stops at the gate and is logged, and
   ungroundable messages still get no draft - but it means the approval queue,
   not the label, is the real line under Gemini. Enforcing the offline rules on

@@ -22,7 +22,7 @@
       "from": "raghav@paperjet.io",
       "subject": "Staging is down again",
       "disposition": "reply",
-      "reason": "The sender is reporting a critical system issue and asking the recipient to investigate and fix it.",
+      "reason": "The email reports a critical system issue in staging and asks the recipient to investigate and fix it.",
       "decided_by": "model:gemini"
     },
     {
@@ -85,9 +85,9 @@
       "id": "m044",
       "from": "sam@paperjet.io",
       "subject": "Re: contractor invoice approval",
-      "disposition": "reply",
-      "reason": "The email requests the owner to approve a Q3 contractor invoice in the finance tool to unblock payment.",
-      "decided_by": "model:gemini"
+      "disposition": "defer",
+      "reason": "sent by the owner, not to the owner; tracked for a follow-up, never replied to (model said reply)",
+      "decided_by": "model:gemini+owner_rule"
     },
     {
       "id": "m097",
@@ -350,7 +350,7 @@
       "from": "dan@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "This is a status update indicating progress on a project and requires no action.",
+      "reason": "This is a status update confirming an approval and asset upload, requiring no action from the recipient.",
       "decided_by": "model:gemini"
     },
     {
@@ -558,7 +558,7 @@
       "from": "priya@paperjet.io",
       "subject": "Re: Launch week -- kickoff",
       "disposition": "archive",
-      "reason": "This is an informational reminder about a launch date and requires no direct action from the recipient.",
+      "reason": "This is a team reminder about a hard deadline, requiring no direct action or reply from the recipient.",
       "decided_by": "model:gemini"
     },
     {
@@ -566,7 +566,7 @@
       "from": "jordan.okafor@gmail.com",
       "subject": "Backend role -- following up",
       "disposition": "reply",
-      "reason": "The sender is following up on a job application and has another offer with a deadline, requiring a direct response from the owner.",
+      "reason": "The sender is following up on a job application and has an offer deadline, requiring a direct and timely response.",
       "decided_by": "model:gemini"
     },
     {
@@ -606,7 +606,7 @@
       "from": "facilities@paperjet.io",
       "subject": "Office closed Monday",
       "disposition": "archive",
-      "reason": "This is an informational announcement about office closure and working from home, requiring no action from the recipient.",
+      "reason": "This is an informational announcement about the office closure for maintenance.",
       "decided_by": "model:gemini"
     },
     {
@@ -638,7 +638,7 @@
       "from": "devika@paperjet.io",
       "subject": "PTO next week",
       "disposition": "archive",
-      "reason": "This is an informational notice about planned time off that requires no action from the recipient.",
+      "reason": "This is an informational email about a colleague's planned time off and requires no action.",
       "decided_by": "model:gemini"
     },
     {
@@ -702,7 +702,7 @@
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- SAFE amendment for signature",
       "disposition": "escalate",
-      "reason": "The email requests the user to review and sign a legal document (SAFE amendment) by Friday, which has financial and legal implications.",
+      "reason": "The email requests review and signature of a SAFE amendment, which is a legal and financial document with irreversible implications.",
       "decided_by": "model:gemini"
     },
     {
@@ -734,7 +734,7 @@
       "from": "aria.f@northwind.vc",
       "subject": "one more slot",
       "disposition": "reply",
-      "reason": "The sender is requesting to adjust a meeting time to accommodate an additional partner.",
+      "reason": "The sender is requesting a meeting time, which requires a direct response from the inbox owner to confirm availability.",
       "decided_by": "model:gemini"
     },
     {
@@ -757,8 +757,8 @@
       "id": "m048",
       "from": "j.hartwell@hartwellcho.com",
       "subject": "PaperJet -- board minutes for review",
-      "disposition": "reply",
-      "reason": "The owner must review the draft minutes and provide feedback or corrections by Monday.",
+      "disposition": "defer",
+      "reason": "The email requests a review of board minutes with a deadline for corrections by Monday, ahead of a meeting on the 18th.",
       "decided_by": "model:gemini"
     },
     {
@@ -774,7 +774,7 @@
       "from": "m.cho@hartwellcho.com",
       "subject": "PaperJet -- one more signature needed",
       "disposition": "defer",
-      "reason": "The email requests a signature on an IP assignment before month-end, indicating a future action is required but not immediately urgent.",
+      "reason": "The email requests a signature on an IP assignment with a deadline before month-end, making it a task to be completed later.",
       "decided_by": "model:gemini"
     },
     {
@@ -782,7 +782,7 @@
       "from": "notes@paperjet.io",
       "subject": "Your 1:1 notes from last week",
       "disposition": "archive",
-      "reason": "This is an informational notification that meeting notes are available, requiring no immediate action.",
+      "reason": "This is a notification that 1:1 notes are available and requires no immediate action or reply.",
       "decided_by": "model:gemini"
     },
     {
